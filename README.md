@@ -1,2 +1,2 @@
-# Projeto_Tetris
-Jogo sera terminado ate o final do ano.
+# Project Tetris
+Game will be finish until end of year.
