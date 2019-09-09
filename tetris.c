@@ -15,6 +15,7 @@ void init(char matrix[ROWS][COLUMS]){
         }
    }
 }
+//teste
 
 //Mostra o conteudo da matriz principal na tela do computador.
 void printMatrix(char matrix[ROWS][COLUMS]){
