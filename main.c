@@ -17,9 +17,10 @@
 int main(){
     char matrix[ROWS][COLUMS];
     int posI, posJ;
+    int keypressed=0;
 
     //posicao inicial do personagem
-    posI = ROWS/2;
+    posI = 0;
     posJ = COLUMS/2;
     //inicializando matriz
     init(matrix);
@@ -28,7 +29,8 @@ int main(){
     ShowConsoleCursor(0);
     system("cls");
 
-    while(1){        
+    //animação do jogo
+    while(keypressed != ESC){        
         gotoxy(0,0);
 
         matrix[posI][posJ] = '@';
@@ -37,7 +39,24 @@ int main(){
 
         matrix[posI][posJ] = ' ';
         
-        if(posJ < COLUMS) posJ++;
+        if(posJ < (ROWS-1)) posI++;
+
+        keypressed = 0;
+        if(kbhit()) keypressed = getch() ;
+        if (keypressed == ARROWS) keypressed = getch() ;
+
+        switch(keypressed){
+            case (int) 'a':
+            case (int) 'A':
+            case LEFT:
+                if (posJ > 0) posJ--; //vai para esquerda
+            break;
+            case TECLA_d:
+            case TECLA_D:
+            case RIGHT:
+                if(posJ < (COLUMS-1)) posJ++; //vai para a direita
+            break;
+        }
     }
 
     system("pause");

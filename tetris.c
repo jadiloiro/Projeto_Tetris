@@ -9,6 +9,7 @@
 //Inicializa a matriz principal com espaços vazios.
 void init(char matrix[ROWS][COLUMS]){
     int i, j ;
+
     for(i=0; i<ROWS; i++){
         for(j=0; j<COLUMS; j++){
             matrix[i][j] = ' ';
@@ -20,10 +21,27 @@ void init(char matrix[ROWS][COLUMS]){
 //Mostra o conteudo da matriz principal na tela do computador.
 void printMatrix(char matrix[ROWS][COLUMS]){
         int i, j ;
+
+        printf("\t\t\t");
+        for(j=0; j<COLUMS+2; j++){
+            printf("*");
+        }
+
+        printf("\n");
+
+
     for(i=0; i<ROWS; i++){
+        printf("\t\t\t*");
         for(j=0; j<COLUMS; j++){
         printf("%c", matrix[i][j]);
         }
-        printf("\n");
+        printf("*\n");
     }
+
+    printf("\t\t\t");
+
+    for(j=0; j<COLUMS+2; j++){
+        printf("*");
+    }
+    printf("\n");
 }
