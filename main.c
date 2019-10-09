@@ -2,7 +2,7 @@
     Jogo interativo Tetris implementado em linguagem C para uso 
     no console (terminal de comandos)
     Para executar:
-    > start programa.exe
+    > start main.exe
     Autor: Jadiel Farias junior
     Data: 28/08/2019
 */
@@ -10,18 +10,23 @@
 #include "tetris.h"
 #include "display.h"
 
-/*
-    Parte principal do programa, responsável por iniciar e 
-    chamar as funções auxiliares.
-*/
+
+
 int main(){
     char matrix[ROWS][COLUMS];
-    int posI, posJ;
+    Bloco tijolo;
     int keypressed=0;
 
     //posicao inicial do personagem
-    posI = 0;
-    posJ = COLUMS/2;
+    tijolo.i = 0;
+    tijolo.j = COLUMS/2;
+    tijolo.tipo = TIPO_I;
+    tijolo.orientacao = ORIENTACAO_UP;
+    tijolo.width = 1;
+    tijolo.height = 4;
+
+
+
     //inicializando matriz
     init(matrix);
 
@@ -33,13 +38,25 @@ int main(){
     while(keypressed != ESC){        
         gotoxy(0,0);
 
-        matrix[posI][posJ] = '@';
+        #if DEBUG == 1
+            printf("PIXEL = (%d, %d)\n", tijolo.i, tijolo.j);
+        #endif 
+
+
+        if(tijolo.i-3>=0) matrix[tijolo.i-3][tijolo.j] = PIXEL;
+        if(tijolo.i-2>=0) matrix[tijolo.i-2][tijolo.j] = PIXEL;
+        if(tijolo.i-1>=0) matrix[tijolo.i-1][tijolo.j] = PIXEL;
+        matrix[tijolo.i][tijolo.j] = PIXEL;
 
         printMatrix(matrix);
 
-        matrix[posI][posJ] = ' ';
+
+        matrix[tijolo.i-3][tijolo.j] = EMPTY;
+        matrix[tijolo.i-2][tijolo.j] = EMPTY;
+        matrix[tijolo.i-1][tijolo.j] = EMPTY;
+        matrix[tijolo.i][tijolo.j] = EMPTY;
         
-        if(posJ < (ROWS-1)) posI++;
+        if(tijolo.i < (ROWS-1)) tijolo.i++;
 
         keypressed = 0;
         if(kbhit()) keypressed = getch() ;
@@ -49,12 +66,12 @@ int main(){
             case (int) 'a':
             case (int) 'A':
             case LEFT:
-                if (posJ > 0) posJ--; //vai para esquerda
+                if (tijolo.j > 0) tijolo.j--; 
             break;
             case TECLA_d:
             case TECLA_D:
             case RIGHT:
-                if(posJ < (COLUMS-1)) posJ++; //vai para a direita
+                if(tijolo.j < (COLUMS-1)) tijolo.j++; 
             break;
         }
     }

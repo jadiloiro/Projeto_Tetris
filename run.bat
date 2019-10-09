@@ -1,2 +1,2 @@
-gcc main.c tetris.c display.c -o main
+gcc main.c display.c tetris.c -o main -D DEBUG%1
 start.\main.exe
