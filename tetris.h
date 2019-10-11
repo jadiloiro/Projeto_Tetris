@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-#include <display.h>
 
 //Configuração das dimenções da matriz principal do jogo.
 #define COLUMS 60
@@ -16,11 +15,12 @@
 #define TECLA_d 100
 #define TECLA_A 65
 #define TECLA_D 68
+#define TECLA_ESPACO 32
 
 //Orientacoes para as peças
 #define ORIENTACAO_UP 1
-#define ORIENTACAO_DOWN 2
-#define ORIENTACAO_LEFT 3
+#define ORIENTACAO_DOWN 3
+#define ORIENTACAO_LEFT 2
 #define ORIENTACAO_RIGHT 4
 
 //Tipos de peças
@@ -36,14 +36,14 @@
 #define PIXEL 219
 #define EMPTY 32
 
-//ESTRUTURA PADRAO DE COMPONENTES
+//ESTRUTURA PADRÃO DE COMPONENTES
 typedef struct{
     int i; //Posição nas linhas da matiz
     int j; //Posição nas colunas da matriz
     int orientacao; // orientação da peça
     int tipo; // tipo da peça
     int width; 
-    int height
+    int height;
 
 }Bloco;
 
@@ -53,3 +53,7 @@ void init(char matrix[ROWS][COLUMS]);
 
 //Mostra o conteudo da matriz principal na tela do computador.
 void printMatrix(char matrix[ROWS][COLUMS]);
+
+void drawBar(char matrix [ROWS][COLUMS], Bloco barra, int simbolo) {
+
+}

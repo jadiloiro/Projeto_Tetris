@@ -9,6 +9,7 @@
 
 #include "tetris.h"
 #include "display.h"
+#define DEBUG 1
 
 
 
@@ -21,7 +22,7 @@ int main(){
     tijolo.i = 0;
     tijolo.j = COLUMS/2;
     tijolo.tipo = TIPO_I;
-    tijolo.orientacao = ORIENTACAO_UP;
+    tijolo.orientacao = ORIENTACAO_LEFT;
     tijolo.width = 1;
     tijolo.height = 4;
 
@@ -39,49 +40,43 @@ int main(){
         gotoxy(0,0);
 
         #if DEBUG == 1
-            printf("PIXEL = (%d, %d)\n", tijolo.i, tijolo.j);
+            printf("@ = (%d, %d)\n", tijolo.i, tijolo.j);
         #endif 
-
-        switch(tijolo.orientacao)
-            case ORIENTACAO_UP:
-                if(tijolo.i-3>=0) matrix[tijolo.i-3][tijolo.j] = PIXEL;
-                if(tijolo.i-2>=0) matrix[tijolo.i-2][tijolo.j] = PIXEL;
-                if(tijolo.i-1>=0) matrix[tijolo.i-1][tijolo.j] = PIXEL;
-                matrix[tijolo.i][tijolo.j] = PIXEL;
-                break;
-            case ORIENTACAO_DOWN:
-                if(tijolo.j-3>=0) matrix[tijolo.i][tijolo.j-3] = PIXEL;
-                if(tijolo.j-2>=0) matrix[tijolo.i][tijolo.j-2] = PIXEL;
-                if(tijolo.j-1>=0) matrix[tijolo.i][tijolo.j-1] = PIXEL;
-                matrix[tijolo.i][tijolo.j] = PIXEL;
-            break;
+        drawBar(matrix, tijolo, PIXEL);
 
         printMatrix(matrix);
-
-
-        matrix[tijolo.i-3][tijolo.j] = EMPTY;
-        matrix[tijolo.i-2][tijolo.j] = EMPTY;
-        matrix[tijolo.i-1][tijolo.j] = EMPTY;
-        matrix[tijolo.i][tijolo.j] = EMPTY;
         
+        drawBar(matrix, tijolo, EMPTY);
+
+    system("pause");
+
+            //faço a posição da @ ir para a direita
         if(tijolo.i < (ROWS-1)) tijolo.i++;
 
-        keypressed = 0;
-        if(kbhit()) keypressed = getch() ;
-        if (keypressed == ARROWS) keypressed = getch() ;
+        //lendo teclas
+        keypressed = 0;         
+        if(kbhit()) keypressed = getch();            
+        if(keypressed==ARROWS) keypressed = getch();
 
         switch(keypressed){
-            case (int) 'a':
-            case (int) 'A':
-            case LEFT:
-                if (tijolo.j > 0) tijolo.j--; 
-            break;
+            case (int)'a':
+            case (int)'A':
+            case LEFT: 
+                if(tijolo.j > 0) tijolo.j--; //vai para esquerda
+            break; 
             case TECLA_d:
             case TECLA_D:
-            case RIGHT:
-                if(tijolo.j < (COLUMS-1)) tijolo.j++; 
+            case RIGHT: 
+                if(tijolo.j < (COLUMS-1)) tijolo.j++; //vai para a direita 
+            break;
+            case TECLA_ESPACO:
+                if(tijolo.orientacao==ORIENTACAO_RIGHT)
+                    tijolo.orientacao = ORIENTACAO_UP;
+                else
+                    tijolo.orientacao++;
             break;
         }
+
     }
 
     system("pause");
