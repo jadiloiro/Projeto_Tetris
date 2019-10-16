@@ -48,7 +48,6 @@ int main(){
         
         drawBar(matrix, tijolo, EMPTY);
 
-    system("pause");
 
             //faço a posição da @ ir para a direita
         if(tijolo.i < (ROWS-1)) tijolo.i++;
@@ -74,7 +73,6 @@ int main(){
                     tijolo.orientacao = ORIENTACAO_UP;
                 else
                     tijolo.orientacao++;
-            break;
         }
 
     }

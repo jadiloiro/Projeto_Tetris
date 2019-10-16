@@ -19,8 +19,8 @@
 
 //Orientacoes para as peças
 #define ORIENTACAO_UP 1
-#define ORIENTACAO_DOWN 3
 #define ORIENTACAO_LEFT 2
+#define ORIENTACAO_DOWN 3
 #define ORIENTACAO_RIGHT 4
 
 //Tipos de peças
@@ -54,6 +54,4 @@ void init(char matrix[ROWS][COLUMS]);
 //Mostra o conteudo da matriz principal na tela do computador.
 void printMatrix(char matrix[ROWS][COLUMS]);
 
-void drawBar(char matrix [ROWS][COLUMS], Bloco barra, int simbolo) {
-
-}
+void drawBar(char matrix [ROWS][COLUMS], Bloco barra, int simbolo);
