@@ -22,7 +22,7 @@ void init(char matrix[ROWS][COLUMS]){
 void printMatrix(char matrix[ROWS][COLUMS]){
         int i, j ;
 
-        printf("\t\t\t");
+        printf("\t\t\t\t\t");
         for(j=0; j<COLUMS+2; j++){
             printf("*");
         }
@@ -31,14 +31,14 @@ void printMatrix(char matrix[ROWS][COLUMS]){
 
 
     for(i=0; i<ROWS; i++){
-        printf("\t\t\t*");
+        printf("\t\t\t\t\t*");
         for(j=0; j<COLUMS; j++){
         printf("%c", matrix[i][j]);
         }
         printf("*\n");
     }
 
-    printf("\t\t\t");
+    printf("\t\t\t\t\t");
 
     for(j=0; j<COLUMS+2; j++){
         printf("*");
@@ -49,6 +49,7 @@ void printMatrix(char matrix[ROWS][COLUMS]){
         switch(barra.orientacao){
             case ORIENTACAO_DOWN:
             case ORIENTACAO_UP:
+                if(barra.i-4>=0) matrix[barra.i-4][barra.j] = simbolo;
                 if(barra.i-3>=0) matrix[barra.i-3][barra.j] = simbolo;
                 if(barra.i-2>=0) matrix[barra.i-2][barra.j] = simbolo;
                 if(barra.i-1>=0) matrix[barra.i-1][barra.j] = simbolo;
@@ -56,7 +57,8 @@ void printMatrix(char matrix[ROWS][COLUMS]){
                 break;
             case ORIENTACAO_RIGHT:
             case ORIENTACAO_LEFT:
-                if(barra.j-3>=0) matrix[barra.i][barra.j-3] = simbolo;
+                if(barra.j+1>=0) matrix[barra.i][barra.j+1] = simbolo;
+                if(barra.j+2>=0) matrix[barra.i][barra.j+2] = simbolo;
                 if(barra.j-2>=0) matrix[barra.i][barra.j-2] = simbolo;
                 if(barra.j-1>=0) matrix[barra.i][barra.j-1] = simbolo;
                 matrix[barra.i][barra.j] = simbolo;

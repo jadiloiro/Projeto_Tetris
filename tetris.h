@@ -3,8 +3,8 @@
 #include <conio.h>
 
 //Configuração das dimenções da matriz principal do jogo.
-#define COLUMS 60
-#define ROWS 25
+#define COLUMS 30
+#define ROWS 60
 
 //TECLAS
 #define ESC 27
