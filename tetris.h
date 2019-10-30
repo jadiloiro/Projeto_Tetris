@@ -55,3 +55,8 @@ void init(char matrix[ROWS][COLUMS]);
 void printMatrix(char matrix[ROWS][COLUMS]);
 
 void drawBar(char matrix [ROWS][COLUMS], Bloco barra, int simbolo);
+
+
+//Inicializa a peça do tipo : BARRA
+
+void initBar(Bloco *barra);

@@ -9,7 +9,6 @@
 
 #include "tetris.h"
 #include "display.h"
-#define DEBUG 1
 
 
 
@@ -18,22 +17,25 @@ int main(){
     Bloco tijolo;
     int keypressed=0;
 
+
+    
+    //apagar o cursor da tela
+    ShowConsoleCursor(0);
+    system("cls");
+
+
+
     //posicao inicial do personagem
-    tijolo.i = 0;
-    tijolo.j = COLUMS/2;
-    tijolo.tipo = TIPO_I;
-    tijolo.orientacao = ORIENTACAO_LEFT;
-    tijolo.width = 1;
-    tijolo.height = 5;
+    initBar(&tijolo);
 
 
 
     //inicializando matriz
     init(matrix);
 
-    //apagar o cursor da tela
-    ShowConsoleCursor(0);
-    system("cls");
+
+
+
 
     //animação do jogo
     while(keypressed != ESC){        

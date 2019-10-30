@@ -65,4 +65,19 @@ void printMatrix(char matrix[ROWS][COLUMS]){
                 break;
     }
 
+
+}
+
+void initBar(Bloco *barra){
+    barra->i = 0;
+    barra->j = COLUMS/2;
+    barra->tipo = TIPO_I;
+    barra->orientacao = ORIENTACAO_LEFT;
+    barra->width = 1;
+    barra->height = 5;
+
+    #if DEBUG == 1
+        printf("posI = %d  posJ = %d\n", barra.i, barra.j);
+        system("pause");
+    #endif
 }

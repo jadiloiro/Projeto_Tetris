@@ -1,1 +1,1 @@
-gcc main.c display.c tetris.c -o main
+main.c display.c tetris.c -o main -D DEBUG=1
