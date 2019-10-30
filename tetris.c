@@ -81,3 +81,32 @@ void initBar(Bloco *barra){
         system("pause");
     #endif
 }
+
+void rotate(Bloco *bloco){
+    if(bloco->orientacao==ORIENTACAO_RIGHT)
+        bloco->orientacao = ORIENTACAO_UP;
+    else
+        bloco->orientacao++;
+
+    //inverte as dimençoes do tijolo
+    int aux = bloco->width;
+    bloco->width = bloco->height;
+    bloco->height = aux;
+
+    if(bloco->j < bloco->width/2)
+        bloco->j = bloco->width/2;
+    else if(bloco->j > COLUMS - (bloco->width/2) -1)
+        bloco->j = COLUMS - (bloco->width/2) -1;
+
+}
+
+//Verifica colisao de blocos
+
+int collisionDetect(char matrix[ROWS][COLUMS], Bloco barra){
+    int retorno = 0;
+
+    if((barra.i + barra.height/2) >= (ROWS-1))
+        retorno = 1;
+
+return retorno;
+}

@@ -48,11 +48,16 @@ int main(){
         drawBar(matrix, tijolo, PIXEL);
 
         printMatrix(matrix);
-        
-        drawBar(matrix, tijolo, EMPTY);
 
 
-            //faço a posição da @ ir para a direita
+        if(!collisionDetect(matrix, tijolo)){
+            drawBar(matrix, tijolo, EMPTY);
+
+            if(tijolo.j < (ROWS-1)) tijolo.i++;
+        }else{
+            initBar(tijolo);
+        }
+        //faço a posição da @ ir para a direita
         if(tijolo.i < (ROWS-1)) tijolo.i++;
 
         //lendo teclas
@@ -72,23 +77,8 @@ int main(){
                 if(tijolo.j + (tijolo.width/2) < (COLUMS-1)) tijolo.j++; //vai para a direita 
             break;
             case TECLA_ESPACO:
-                if(tijolo.orientacao==ORIENTACAO_RIGHT)
-                    tijolo.orientacao = ORIENTACAO_UP;
-                else
-                    tijolo.orientacao++;
-
-                //inverte as dimençoes do tijolo
-                int aux = tijolo.width;
-                tijolo.width = tijolo.height;
-                tijolo.height = aux;
-
-                if(tijolo.j < tijolo.width/2)
-                    tijolo.j = tijolo.width/2;
-                else if(tijolo.j > COLUMS - (tijolo.width/2) -1)
-                    tijolo.j = COLUMS - (tijolo.width/2) -1;
-
-                        
-                
+                rotate(&tijolo);
+            break;       
         }
 
     }

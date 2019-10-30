@@ -60,3 +60,11 @@ void drawBar(char matrix [ROWS][COLUMS], Bloco barra, int simbolo);
 //Inicializa a peça do tipo : BARRA
 
 void initBar(Bloco *barra);
+
+//Rotação blocos do jogo
+
+void rotate(Bloco *bloco);
+
+//Verifica colisao de blocos
+
+int collisionDetect(char matrix[ROWS][COLUMS], Bloco barra);
